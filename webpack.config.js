@@ -17,7 +17,11 @@ module.exports = {
                 test: /\.ts?$/,
                 use: 'ts-loader',
                 exclude: '/node_modules/'
-            }
+            },
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
+            },
         ],
     },
     output: {
@@ -28,4 +32,9 @@ module.exports = {
         minimize: true,
         minimizer: [new UglifyJsPlugin()],
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'src/index.html'
+        }),
+    ]
 }
