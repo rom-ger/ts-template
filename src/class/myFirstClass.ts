@@ -1,17 +1,17 @@
 import { JSONPlaceholder, IJSONPlaceholder } from '../actions/jsonplaceholderActions';
-import { IComment } from '../interfaces/IComment';
-import { IPost } from '../interfaces/IPost';
-import { IAlbum } from '../interfaces/IAlbum';
-import { IPhoto } from '../interfaces/IPhoto';
-import { ITodo } from '../interfaces/ITodo';
+import { Comment } from '../models/Comment';
+import { Post } from '../models/Post';
+import { Album } from '../models/Album';
+import { Photo } from '../models/Photo';
+import { ITodoDTO, ITodo, Todo } from '../models/Todo';
 import { IUser } from '../interfaces/IUser';
 
 interface IGetApi {
-    posts: IPost[];
-    comments: IComment[];
-    albums: IAlbum[];
-    photos: IPhoto[];
-    todos: ITodo[];
+    posts: Post[];
+    comments: Comment[];
+    albums: Album[];
+    photos: Photo[];
+    todos: Todo[];
     users: IUser[];
 }
 
