@@ -9,22 +9,14 @@ import { IUser } from '../interfaces/IUser'
 class JSONPlaceholder {
     private static url: string = 'https://jsonplaceholder.typicode.com'
 
-    static getPosts(): Promise<{ json: IPost[], resource: string }> {
+    static getPosts(): Promise<IPost[]> {
         return fetch(`${JSONPlaceholder.url}/posts`)
             .then(response => response.json())
-            /*
-            изначально просто возвращал json (ниже). затем встал вопрос,
-            а как я буду складывать динамически в нужные поля в итоговый объект результат
-            поэтому я решил возвращать объект с полем, по которому в итоге смогу понять
-            что это за ответ. Тут сомнения, что так делать верно
-            * */
-            .then(json => ({ json, resource: 'posts' }))
     }
 
-    static getComments(): Promise<{ json: IComment[], resource: string }> {
+    static getComments(): Promise<IComment[]> {
         return fetch(`${JSONPlaceholder.url}/comments`)
-            .then(response => response.json())
-            .then(json => ({ json, resource: 'comments' }))
+            .then(response => response.json());
     }
 
     static getAlbums(): Promise<{ json: IAlbum[], resource: string }> {

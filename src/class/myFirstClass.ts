@@ -1,44 +1,38 @@
-import { JSONPlaceholder } from '../actions/jsonplaceholderActions'
+import { JSONPlaceholder } from '../actions/jsonplaceholderActions';
+import { IComment } from '../interfaces/IComment';
+import { IPost } from '../interfaces/IPost';
 
-class MyFirstClass {
-    a: number;
+interface IGetApi {
+    posts: IPost[];
+    comments: IComment[];
+}
 
+interface IMyFirstClass {
+    getApi: () => Promise<IGetApi>;
+}
+
+class MyFirstClass implements IMyFirstClass {
     constructor() {
-        this.a = 3;
     }
 
-    calc() {
-        return this.a + 3;
-    }
-
-    async getApi() {
-        /*
-        * здест не уверен, что так хорошо писать interface внутри функции
-        * более того, сейчас интерфейс описан так,  ключ строка а значение объект
-        * я пытался конкретно указать через | IPost | IUser и импортировать, но кажется это плохо
-        * поскольку в двух файлах получается импорты этих интерефейсов
-        * да и сам TS ругается в таком случае на это ----> res[resp.resource] = resp.json
-        * */
-        interface IResult {
-            [key: string]: object
-        }
-
-        let res: IResult = {};
+    getApi = async () => {
+        let res: IGetApi = {
+            posts: [],
+            comments: [],
+        };
 
         await Promise.all([
-            JSONPlaceholder.getPosts(),
-            JSONPlaceholder.getComments(),
-            JSONPlaceholder.getAlbums(),
-            JSONPlaceholder.getPhotos(),
-            JSONPlaceholder.getTodos(),
-            JSONPlaceholder.getUsers(),
-        ]).then(responses => {
-            return Promise.all(responses.map(resp => {
-                res[resp.resource] = resp.json
-            }))
-        })
+            JSONPlaceholder.getPosts()
+                .then(posts => res.posts = posts),
+            JSONPlaceholder.getComments()
+                .then(comments => res.comments = comments),
+            // JSONPlaceholder.getAlbums(),
+            // JSONPlaceholder.getPhotos(),
+            // JSONPlaceholder.getTodos(),
+            // JSONPlaceholder.getUsers(),
+        ]);
 
-        return res
+        return res;
     }
 }
 
