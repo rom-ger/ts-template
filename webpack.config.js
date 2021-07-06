@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TSLintPlugin = require('tslint-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
@@ -14,7 +15,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts?$/,
+                test: /\.(ts|tsx)?$/,
                 use: 'ts-loader',
                 exclude: '/node_modules/'
             },
@@ -35,6 +36,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: 'src/index.html'
+        }),
+        new TSLintPlugin({
+            files: ['./src/**/*.ts', './src/**/*.tsx']
         }),
     ]
 }

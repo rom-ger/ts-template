@@ -7,9 +7,7 @@ export interface IMyInterface {
     r?: any;
     t: (a: number) => string;
     k: (a: number) => void;
-    w: Array<string>;
     w1: string[];
-    q: Function;
 }
 
 export interface IMyInterface2 {
