@@ -1,3 +1,4 @@
+import { BaseActions } from '../actions/baseActions'
 import { IPost } from '../interfaces/IPost'
 import { IComment } from '../interfaces/IComment'
 import { IAlbum } from '../interfaces/IAlbum'
@@ -5,38 +6,42 @@ import { IPhoto } from '../interfaces/IPhoto'
 import { ITodo } from '../interfaces/ITodo'
 import { IUser } from '../interfaces/IUser'
 
+export interface IJSONPlaceholder {
+    getPosts: () => Promise<IPost[]>;
+    getComments: () => Promise<IComment[]>;
+    getAlbums: () => Promise<IAlbum[]>;
+    getPhotos: () => Promise<IPhoto[]>;
+    getTodos: () => Promise<ITodo[]>;
+    getUsers: () => Promise<IUser[]>;
+}
 
-class JSONPlaceholder {
-    private static url: string = 'https://jsonplaceholder.typicode.com'
-
-    static getPosts(): Promise<IPost[]> {
-        return fetch(`${JSONPlaceholder.url}/posts`)
-            .then(response => response.json())
+class JSONPlaceholder extends BaseActions implements IJSONPlaceholder {
+    constructor() {
+        super('https://jsonplaceholder.typicode.com');
     }
 
-    static getComments(): Promise<IComment[]> {
-        return fetch(`${JSONPlaceholder.url}/comments`)
-            .then(response => response.json());
+    getPosts(): Promise<IPost[]> {
+        return this.getAction<IPost[]>('/posts');
     }
 
-    static getAlbums(): Promise<IAlbum[]> {
-        return fetch(`${JSONPlaceholder.url}/albums`)
-            .then(response => response.json())
+    getComments(): Promise<IComment[]> {
+        return this.getAction<IComment[]>('/comments');
     }
 
-    static getPhotos(): Promise<IPhoto[]> {
-        return fetch(`${JSONPlaceholder.url}/photos`)
-            .then(response => response.json())
+    getAlbums(): Promise<IAlbum[]> {
+        return this.getAction<IAlbum[]>('/albums');
     }
 
-    static getTodos(): Promise<ITodo[]> {
-        return fetch(`${JSONPlaceholder.url}/todos`)
-            .then(response => response.json())
+    getPhotos(): Promise<IPhoto[]> {
+        return this.getAction<IPhoto[]>('/photos');
     }
 
-    static getUsers(): Promise<IUser[]> {
-        return fetch(`${JSONPlaceholder.url}/users`)
-            .then(response => response.json())
+    getTodos(): Promise<ITodo[]> {
+        return this.getAction<ITodo[]>('/todos');
+    }
+
+    getUsers(): Promise<IUser[]> {
+        return this.getAction<IUser[]>('/users');
     }
 }
 

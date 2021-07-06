@@ -1,4 +1,4 @@
-import { JSONPlaceholder } from '../actions/jsonplaceholderActions';
+import { JSONPlaceholder, IJSONPlaceholder } from '../actions/jsonplaceholderActions';
 import { IComment } from '../interfaces/IComment';
 import { IPost } from '../interfaces/IPost';
 import { IAlbum } from '../interfaces/IAlbum';
@@ -19,6 +19,8 @@ interface IMyFirstClass {
     getApi: () => Promise<IGetApi>;
 }
 
+const JSONPlaceholderActions: IJSONPlaceholder = new JSONPlaceholder();
+
 class MyFirstClass implements IMyFirstClass {
     constructor() {
     }
@@ -34,17 +36,17 @@ class MyFirstClass implements IMyFirstClass {
         };
 
         await Promise.all([
-            JSONPlaceholder.getPosts()
+            JSONPlaceholderActions.getPosts()
                 .then(posts => res.posts = posts),
-            JSONPlaceholder.getComments()
+            JSONPlaceholderActions.getComments()
                 .then(comments => res.comments = comments),
-            JSONPlaceholder.getAlbums()
+            JSONPlaceholderActions.getAlbums()
                 .then(albums => res.albums = albums),
-            JSONPlaceholder.getPhotos()
+            JSONPlaceholderActions.getPhotos()
                 .then(photos => res.photos = photos),
-            JSONPlaceholder.getTodos()
+            JSONPlaceholderActions.getTodos()
                 .then(todos => res.todos = todos),
-            JSONPlaceholder.getUsers()
+            JSONPlaceholderActions.getUsers()
                 .then(users => res.users = users),
         ]);
 
