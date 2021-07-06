@@ -19,30 +19,27 @@ class JSONPlaceholder {
             .then(response => response.json());
     }
 
-    static getAlbums(): Promise<{ json: IAlbum[], resource: string }> {
+    static getAlbums(): Promise<IAlbum[]> {
         return fetch(`${JSONPlaceholder.url}/albums`)
             .then(response => response.json())
-            .then(json => ({ json, resource: 'albums' }))
     }
 
-    static getPhotos(): Promise<{ json: IPhoto[], resource: string }> {
+    static getPhotos(): Promise<IPhoto[]> {
         return fetch(`${JSONPlaceholder.url}/photos`)
             .then(response => response.json())
-            .then(json => ({ json, resource: 'photos' }))
     }
 
-    static getTodos(): Promise<{ json: ITodo[], resource: string }> {
+    static getTodos(): Promise<ITodo[]> {
         return fetch(`${JSONPlaceholder.url}/todos`)
             .then(response => response.json())
-            .then(json => ({ json, resource: 'todos' }))
     }
 
-    static getUsers(): Promise<{ json: IUser[], resource: string }> {
+    static getUsers(): Promise<IUser[]> {
         return fetch(`${JSONPlaceholder.url}/users`)
             .then(response => response.json())
-            .then(json => ({ json, resource: 'users' }))
     }
 }
 
-export { JSONPlaceholder }
+export { JSONPlaceholder };
+
 
