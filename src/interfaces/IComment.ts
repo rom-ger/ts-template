@@ -6,4 +6,4 @@ interface IComment {
     body: string;
 }
 
-export { IComment }
+export { IComment };

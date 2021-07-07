@@ -1,11 +1,10 @@
 import { BaseActions } from '../actions/baseActions'
-// import { IPost } from '../interfaces/IPost'
-import { IPostDTO, IPost, Post } from '../models/Post';
-import { IAlbumDTO, IAlbum, Album } from '../models/Album'
-import { ICommentDTO, IComment, Comment } from '../models/Comment'
-import { IPhototDTO, IPhoto, Photo } from '../models/Photo'
-import { ITodoDTO, ITodo, Todo } from '../models/Todo'
-import { IUser } from '../interfaces/IUser'
+import { IPostDTO, Post } from '../models/Post';
+import { IAlbumDTO, Album } from '../models/Album'
+import { ICommentDTO, Comment } from '../models/Comment'
+import { IPhototDTO, Photo } from '../models/Photo'
+import { ITodoDTO, Todo } from '../models/Todo'
+import { IUserDTO, User } from '../models/User'
 
 export interface IJSONPlaceholder {
     getPosts: () => Promise<Post[]>;
@@ -13,7 +12,7 @@ export interface IJSONPlaceholder {
     getComments: () => Promise<Comment[]>;
     getPhotos: () => Promise<Photo[]>;
     getTodos: () => Promise<Todo[]>;
-    getUsers: () => Promise<IUser[]>;
+    getUsers: () => Promise<User[]>;
 }
 
 class JSONPlaceholder extends BaseActions implements IJSONPlaceholder {
@@ -28,26 +27,28 @@ class JSONPlaceholder extends BaseActions implements IJSONPlaceholder {
 
     getAlbums(): Promise<Album[]> {
         return this.getAction<IAlbumDTO[]>('/albums')
-            .then(dtos => dtos.map(dto => new Album(dto)))
+            .then(dtos => dtos.map(dto => new Album(dto)));
     }
 
-    getComments(): Promise<IComment[]> {
-        return this.getAction<IComment[]>('/comments');
+    getComments(): Promise<Comment[]> {
+        return this.getAction<ICommentDTO[]>('/comments')
+            .then(dtos => dtos.map(dto => new Comment(dto)));
     }
 
-    getPhotos(): Promise<IPhoto[]> {
-        return this.getAction<IPhoto[]>('/photos');
+    getPhotos(): Promise<Photo[]> {
+        return this.getAction<IPhototDTO[]>('/photos')
+            .then(dtos => dtos.map(dto => new Photo(dto)));
     }
 
-    getTodos(): Promise<ITodo[]> {
-        return this.getAction<ITodo[]>('/todos');
+    getTodos(): Promise<Todo[]> {
+        return this.getAction<ITodoDTO[]>('/todos')
+            .then(dtos => dtos.map(dto => new Todo(dto)));
     }
 
-    getUsers(): Promise<IUser[]> {
-        return this.getAction<IUser[]>('/users');
+    getUsers(): Promise<User[]> {
+        return this.getAction<IUserDTO[]>('/users')
+            .then(dtos => dtos.map(dto => new User(dto)));
     }
 }
 
 export { JSONPlaceholder };
-
-

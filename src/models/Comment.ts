@@ -25,4 +25,3 @@ class Comment implements IComment {
 }
 
 export { ICommentDTO, IComment, Comment };
-

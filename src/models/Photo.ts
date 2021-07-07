@@ -25,4 +25,3 @@ class Photo implements IPhoto {
 }
 
 export { IPhototDTO, IPhoto, Photo };
-

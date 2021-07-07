@@ -1,5 +1,3 @@
-// Здесь сомнения, а правильно ли так описывать
-
 interface IGeo {
     lat: string;
     lng: string;

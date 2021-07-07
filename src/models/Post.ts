@@ -25,4 +25,4 @@ class Post implements IPost {
     }
 }
 
-export {IPostDTO, IPost, Post};
+export { IPostDTO, IPost, Post };

@@ -1,27 +1,49 @@
-interface ITodoDTO {
-    userId: number;
+interface IGeo {
+    lat: string;
+    lng: string;
+}
+
+interface IAddress {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: IGeo;
+}
+
+interface ICompany {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+}
+
+interface IUserDTO {
     id: number;
-    title: string;
-    completed: boolean;
+    name: string;
+    username: string;
+    email: string;
+    address: IAddress;
+    phone: string;
+    website: string;
+    company: ICompany;
 }
 
-interface ITodo {
+interface IUser {
     id?: number;
-    userId?: number;
-    title: string;
+    email: string;
+    company: ICompany;
 }
 
-class Todo implements ITodo {
+class User implements IUser {
     id?: number;
-    userId?: number;
-    title: string;
+    email: string;
+    company: ICompany;
 
-    constructor(dto: ITodoDTO) {
+    constructor(dto: IUserDTO) {
         this.id = dto.id || undefined;
-        this.userId = dto.userId || undefined;
-        this.title = dto.title || 'Без названия';
+        this.email = dto.email || 'no email';
+        this.company = dto.company || undefined;
     }
 }
 
-export { ITodoDTO, ITodo, Todo };
-
+export { User, IUserDTO, IUser, ICompany, IAddress, IGeo };

@@ -3,8 +3,8 @@ import { Comment } from '../models/Comment';
 import { Post } from '../models/Post';
 import { Album } from '../models/Album';
 import { Photo } from '../models/Photo';
-import { ITodoDTO, ITodo, Todo } from '../models/Todo';
-import { IUser } from '../interfaces/IUser';
+import { Todo } from '../models/Todo';
+import { User } from '../models/User';
 
 interface IGetApi {
     posts: Post[];
@@ -12,7 +12,7 @@ interface IGetApi {
     albums: Album[];
     photos: Photo[];
     todos: Todo[];
-    users: IUser[];
+    users: User[];
 }
 
 interface IMyFirstClass {
@@ -22,9 +22,6 @@ interface IMyFirstClass {
 const JSONPlaceholderActions: IJSONPlaceholder = new JSONPlaceholder();
 
 class MyFirstClass implements IMyFirstClass {
-    constructor() {
-    }
-
     getApi = async () => {
         let res: IGetApi = {
             posts: [],
@@ -55,4 +52,3 @@ class MyFirstClass implements IMyFirstClass {
 }
 
 export { MyFirstClass };
-

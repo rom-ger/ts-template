@@ -24,4 +24,3 @@ class Todo implements ITodo {
 }
 
 export { ITodoDTO, ITodo, Todo };
-
