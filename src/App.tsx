@@ -14,6 +14,8 @@ function App() {
     const [photos, setPhotos] = useState<Photo[] | []>([])
     const [todos, setTodos] = useState<Todo[] | []>([])
     const [users, setUsers] = useState<User[] | []>([])
+    const [error, setError] = useState<string | null>(null)
+
 
     useEffect(
         () => {
@@ -29,7 +31,7 @@ function App() {
                     setUsers(res.users)
                 })
                 .catch((e) => {
-                    window.console.log(e)
+                    setError(e.message)
                 })
         },
         [],
@@ -38,12 +40,18 @@ function App() {
     return (
         <div>
             <h1>JSONPlaceholders</h1>
-            <div>Posts - {posts.length}</div>
-            <div>Comments - {comments.length}</div>
-            <div>Albums - {albums.length}</div>
-            <div>Photos - {photos.length}</div>
-            <div>Todos - {todos.length}</div>
-            <div>Users - {users.length}</div>
+            {error ? (
+                <p>Произошла ошибка: {error}</p>
+            ) : (
+                <div>
+                    <div>Posts - {posts.length}</div>
+                    <div>Comments - {comments.length}</div>
+                    <div>Albums - {albums.length}</div>
+                    <div>Photos - {photos.length}</div>
+                    <div>Todos - {todos.length}</div>
+                    <div>Users - {users.length}</div>
+                </div>
+            )}
         </div>
     )
 };
