@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { MyFirstClass, IGetApi } from './class/myFirstClass';
+import { MyFirstClass } from './class/myFirstClass';
+import { Comment } from './models/Comment';
+import { Post } from './models/Post';
+import { Album } from './models/Album';
+import { Photo } from './models/Photo';
+import { Todo } from './models/Todo';
+import { User } from './models/User';
 
 function App() {
-    const [json, setJson] = useState<IGetApi | null>(null)
+    const [posts, setPosts] = useState<Post[] | []>([])
+    const [comments, setComments] = useState<Comment[] | []>([])
+    const [albums, setAlbums] = useState<Album[] | []>([])
+    const [photos, setPhotos] = useState<Photo[] | []>([])
+    const [todos, setTodos] = useState<Todo[] | []>([])
+    const [users, setUsers] = useState<User[] | []>([])
 
     useEffect(
         () => {
@@ -10,10 +21,15 @@ function App() {
 
             a.getApi()
                 .then((res) => {
-                    setJson(res)
+                    setPosts(res.posts)
+                    setComments(res.comments)
+                    setAlbums(res.albums)
+                    setPhotos(res.photos)
+                    setTodos(res.todos)
+                    setUsers(res.users)
                 })
                 .catch((e) => {
-                    throw new Error(e.message)
+                    window.console.log(e)
                 })
         },
         [],
@@ -21,19 +37,13 @@ function App() {
 
     return (
         <div>
-            TS Template
-            {json && (
-                <div>
-                    <h1>JSONPlaceholders</h1>
-                    {Object.keys(json)
-                        .map(placeholder => (
-                            <div key={placeholder}>
-                                <h2>{placeholder}</h2>
-                                <div>{JSON.stringify(json[placeholder as keyof IGetApi])}</div>
-                            </div>
-                        ))}
-                </div>
-            )}
+            <h1>JSONPlaceholders</h1>
+            <div>Posts - {posts.length}</div>
+            <div>Comments - {comments.length}</div>
+            <div>Albums - {albums.length}</div>
+            <div>Photos - {photos.length}</div>
+            <div>Todos - {todos.length}</div>
+            <div>Users - {users.length}</div>
         </div>
     )
 };

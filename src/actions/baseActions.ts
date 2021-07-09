@@ -11,7 +11,7 @@ class BaseActions implements IBaseActions {
     }
 
     getAction<T>(url: string): Promise<T> {
-        return fetch(`${this.baseUrl}${url}?_start=0&_limit=5`)
+        return fetch(`${this.baseUrl}${url}`) // ?_start=0&_limit=5
             .then(response => response.json());
     }
 }
