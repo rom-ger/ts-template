@@ -4,17 +4,20 @@ import { MyFirstClass, IGetApi } from './class/myFirstClass';
 function App() {
     const [json, setJson] = useState<IGetApi | null>(null)
 
-    useEffect(() => {
-        let a = new MyFirstClass();
+    useEffect(
+        () => {
+            let a = new MyFirstClass();
 
-        a.getApi()
-            .then((res) => {
-                setJson(res)
-            })
-            .catch((e) => {
-                throw new Error(e.message)
-            })
-    }, []);
+            a.getApi()
+                .then((res) => {
+                    setJson(res)
+                })
+                .catch((e) => {
+                    throw new Error(e.message)
+                })
+        },
+        [],
+    );
 
     return (
         <div>
