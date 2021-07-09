@@ -6,7 +6,7 @@ import { IPhototDTO, Photo } from '../models/Photo'
 import { ITodoDTO, Todo } from '../models/Todo'
 import { IUserDTO, User } from '../models/User'
 
-export interface IJSONPlaceholder {
+interface IJSONPlaceholder {
     getPosts: () => Promise<Post[]>;
     getAlbums: () => Promise<Album[]>;
     getComments: () => Promise<Comment[]>;
@@ -51,4 +51,4 @@ class JSONPlaceholder extends BaseActions implements IJSONPlaceholder {
     }
 }
 
-export { JSONPlaceholder };
+export { JSONPlaceholder, IJSONPlaceholder };

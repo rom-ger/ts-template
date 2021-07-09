@@ -51,4 +51,4 @@ class MyFirstClass implements IMyFirstClass {
     }
 }
 
-export { MyFirstClass };
+export { MyFirstClass, IGetApi };
