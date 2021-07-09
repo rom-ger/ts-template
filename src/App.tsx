@@ -16,7 +16,6 @@ function App() {
     const [users, setUsers] = useState<User[] | []>([])
     const [error, setError] = useState<string | null>(null)
 
-
     useEffect(
         () => {
             let a = new MyFirstClass();
