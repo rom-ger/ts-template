@@ -1,0 +1,30 @@
+{
+  "APPLICATION_DIST_PATH": "./dist",
+  "APPLICATION_BROWSERSYNC_PORT": 3000,
+  "styles": {
+    "mainStylesPaths": [
+      "./src/styles/common.scss"
+    ]
+  },
+  "js": {
+    "eslintPaths": [
+      "!./src/assets/**/*.js",
+      "./src/**/*.js",
+      "./src/**/*.jsx"
+    ]
+  },
+  "ts": {
+    "tslintPaths": [
+      "./src/**/*.ts",
+      "./src/**/*.tsx",
+      "!./src/**/*.spec.ts",
+      "!./src/**/*.spec.tsx"
+    ],
+    "tsconfigPath": "./tsconfig.json"
+  },
+  "assets": {
+    "src": "./src/assets/**/*",
+    "dst": "./dist/assets"
+  },
+  "indexHtmlPath": "./src/index.html"
+}

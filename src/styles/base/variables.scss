@@ -1,0 +1,11 @@
+@import 'colorMap';
+
+// Units
+$container-width: 1272px;
+$break-point-sm: 360;
+$break-point-md: 768;
+
+$default-border: 1px solid $bs010;
+
+$default-transition-duration: 300ms;
+$default-transition: all $default-transition-duration ease;

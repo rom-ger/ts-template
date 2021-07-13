@@ -1,4 +1,4 @@
-import { BaseActions } from '../actions/baseActions'
+import { BaseActions } from './baseActions'
 import { IPostDTO, Post } from '../models/Post';
 import { IAlbumDTO, Album } from '../models/Album'
 import { ICommentDTO, Comment } from '../models/Comment'

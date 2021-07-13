@@ -49,8 +49,8 @@ function App() {
             )}
 
             {!loading && !error && (
-                <div>
-                    <div>Posts - {posts.length}</div>
+                <div className="main">
+                    <div>Posts1 - {posts.length}</div>
                     <div>Comments - {comments.length}</div>
                     <div>Albums - {albums.length}</div>
                     <div>Photos - {photos.length}</div>
