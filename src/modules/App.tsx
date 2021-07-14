@@ -10,9 +10,16 @@ const App = inject('appStore')(observer(({ appStore }: IApp) => {
     if (!appStore) {
         return null;
     }
-    const { albums, comments, error, getData, loading, photos, posts, todos, users } = appStore;
+    const { albums, comments, error, getData, loading, photos, postsObservable, posts, todos, users } = appStore;
     useEffect(
-        () => getData(),
+        () => {
+            postsObservable.observe((change) => {
+                if (change.newValue.length !== change.oldValue?.length) {
+                    window.console.log('Количество элементов в posts изменилось');
+                }
+            });
+            getData();
+        },
         [],
     );
 

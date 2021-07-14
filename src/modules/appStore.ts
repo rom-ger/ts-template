@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx';
+import { action, observable, IObservableValue, computed } from 'mobx';
 import { MyFirstClass } from './class/myFirstClass';
 import { Comment } from './models/Comment';
 import { Post } from './models/Post';
@@ -10,6 +10,7 @@ import { User } from './models/User';
 const a = new MyFirstClass();
 
 export interface IAppStore {
+    postsObservable: IObservableValue<Post[]>;
     posts: Post[];
     comments: Comment[];
     albums: Album[];
@@ -22,7 +23,7 @@ export interface IAppStore {
 }
 
 class AppStore implements IAppStore {
-    @observable posts: Post[];
+    @observable postsObservable: IObservableValue<Post[]>;
     @observable comments: Comment[];
     @observable albums: Album[];
     @observable photos: Photo[];
@@ -32,7 +33,7 @@ class AppStore implements IAppStore {
     @observable loading: boolean;
 
     constructor() {
-        this.posts = [];
+        this.postsObservable = observable.box<Post[]>([]);
         this.comments = [];
         this.albums = [];
         this.photos = [];
@@ -42,12 +43,16 @@ class AppStore implements IAppStore {
         this.loading = false;
     }
 
+    @computed get posts() {
+        return this.postsObservable.get();
+    }
+
     @action('get data')
     getData = () => {
         this.loading = true;
         a.getApi()
             .then((res) => {
-                this.posts = res.posts;
+                this.postsObservable.set(res.posts);
                 this.comments = res.comments;
                 this.albums = res.albums;
                 this.photos = res.photos;
