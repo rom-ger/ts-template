@@ -1,43 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { MyFirstClass } from './class/myFirstClass';
-import { Comment } from './models/Comment';
-import { Post } from './models/Post';
-import { Album } from './models/Album';
-import { Photo } from './models/Photo';
-import { Todo } from './models/Todo';
-import { User } from './models/User';
+import React, { useEffect } from 'react';
+import { observer, inject } from 'mobx-react';
+import { IAppStore } from './appStore';
 
-function App() {
-    const [posts, setPosts] = useState<Post[]>([]);
-    const [comments, setComments] = useState<Comment[]>([]);
-    const [albums, setAlbums] = useState<Album[]>([]);
-    const [photos, setPhotos] = useState<Photo[]>([]);
-    const [todos, setTodos] = useState<Todo[]>([]);
-    const [users, setUsers] = useState<User[]>([]);
-    const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
+interface IApp {
+    appStore?: IAppStore;
+}
 
+const App = inject('appStore')(observer(({ appStore }: IApp) => {
+    if (!appStore) {
+        return null;
+    }
+    const { albums, comments, error, getData, loading, photos, posts, todos, users } = appStore;
     useEffect(
-        () => {
-            let a = new MyFirstClass();
-
-            setLoading(true);
-            a.getApi()
-                .then((res) => {
-                    setPosts(res.posts);
-                    setComments(res.comments);
-                    setAlbums(res.albums);
-                    setPhotos(res.photos);
-                    setTodos(res.todos);
-                    setUsers(res.users);
-                })
-                .catch((e) => {
-                    setError(e.message);
-                })
-                .finally(() => { // непонятно почему не работает. я добавил в tsconfig es2018.promise в lib
-                    setLoading(false);
-                });
-        },
+        () => getData(),
         [],
     );
 
@@ -50,7 +25,7 @@ function App() {
 
             {!loading && !error && (
                 <div className="main">
-                    <div>Posts1 - {posts.length}</div>
+                    <div>Posts - {posts.length}</div>
                     <div>Comments - {comments.length}</div>
                     <div>Albums - {albums.length}</div>
                     <div>Photos - {photos.length}</div>
@@ -60,6 +35,6 @@ function App() {
             )}
         </div>
     );
-};
+}));
 
 export default App;
