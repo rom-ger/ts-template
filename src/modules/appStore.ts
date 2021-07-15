@@ -1,4 +1,4 @@
-import { action, observable, IObservableValue, computed } from 'mobx';
+import { action, observable, IObservableValue, computed, IValueDidChange, IComputedValue } from 'mobx';
 import { MyFirstClass } from './class/myFirstClass';
 import { Comment } from './models/Comment';
 import { Post } from './models/Post';
@@ -19,6 +19,7 @@ export interface IAppStore {
     users: User[];
     error: string | null;
     loading: boolean;
+    allLength: IComputedValue<number>;
     getData: () => void;
 }
 
@@ -31,6 +32,7 @@ class AppStore implements IAppStore {
     @observable users: User[];
     @observable error: string | null;
     @observable loading: boolean;
+    @observable allLength: IComputedValue<number>;
 
     constructor() {
         this.postsObservable = observable.box<Post[]>([]);
@@ -41,6 +43,11 @@ class AppStore implements IAppStore {
         this.users = [];
         this.error = null;
         this.loading = false;
+
+        this.allLength = computed(this.allLengthSelector);
+
+        this.postsObservable.observe(this.changePostEpic);
+        this.allLength.observe(this.changeAllLengthEpic);
     }
 
     @computed get posts() {
@@ -65,6 +72,28 @@ class AppStore implements IAppStore {
             .finally(() => {
                 this.loading = false;
             });
+    }
+
+    allLengthSelector = () => {
+        return this.posts.length + this.comments.length + this.albums.length + this.photos.length + this.todos.length + this.users.length;
+    }
+
+    /**
+     * Эпик на изменение posts
+     */
+    changePostEpic = (change: IValueDidChange<Post[]>) => {
+        if (change.newValue.length !== change.oldValue?.length) {
+            window.console.log('Количество элементов в posts изменилось');
+        }
+    }
+
+    /**
+     * Эпик на изменение allLength
+     */
+    changeAllLengthEpic = (change: IValueDidChange<number>) => {
+        if (change.newValue !== change.oldValue) {
+            window.console.log('Количество суммы элементов изменилось');
+        }
     }
 }
 
