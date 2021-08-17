@@ -1,18 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'mobx-react';
-import App from './modules/App';
-import appStore from './modules/appStore';
-
-const stores = { appStore };
+import MainRouter from './routes/mainRoute';
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider
-                {...stores}
-        >
-            <App />
-        </Provider>
+        <MainRouter />
     </React.StrictMode>,
     document.getElementById('root'),
 );
