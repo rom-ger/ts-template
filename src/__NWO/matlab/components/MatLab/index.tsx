@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 
 const BUTTONS = ['HOME', 'PLOTS', 'APPS'];
 
-const MainHome = () => {
+const MatLab = () => {
     const [selectTabIndex, setSelectTabIndex] = useState<number>(0);
+
     return (
         <div>
             <div className="header-buttons">
@@ -12,6 +13,7 @@ const MainHome = () => {
                         <div
                             className={`button-item ${selectTabIndex === index ? 'button-item--selected' : ''}`}
                             onClick={() => setSelectTabIndex(index)}
+                            key={index}
                         >{name}</div>,
                     )
                 }
@@ -20,4 +22,4 @@ const MainHome = () => {
     );
 };
 
-export default MainHome;
+export default MatLab;
