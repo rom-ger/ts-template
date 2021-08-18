@@ -16,17 +16,6 @@ const MainHome = () => {
                     )
                 }
             </div>
-            <div className="header-content">
-                {
-                    selectTabIndex === 0 && <HomeButtons />
-                }
-                {
-                    selectTabIndex === 1 && <PlotsButtons />
-                }
-                {
-                    selectTabIndex === 2 && <AppsButtons />
-                }
-            </div>
         </div>
     );
 };
