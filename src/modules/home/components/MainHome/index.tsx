@@ -12,7 +12,7 @@ const MainHome = () => {
                         <div
                             className={`button-item ${selectTabIndex === index ? 'button-item--selected' : ''}`}
                             onClick={() => setSelectTabIndex(index)}
-                        >{name}</div>
+                        >{name}</div>,
                     )
                 }
             </div>
