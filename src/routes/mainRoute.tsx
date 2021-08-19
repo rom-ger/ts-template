@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import MatLab from '../__NWO/matlab/components/MatLab';
-import Simulink from '../__NWO/simulink/components/Simulink';
+import MatLab from '../modules/matlab/components/MatLab';
+import Simulink from '../modules/simulink/components/Simulink';
 
 const MainRouter = () => {
     return (
