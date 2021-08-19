@@ -27,7 +27,7 @@ body {
   display: flex;
   align-items: flex-end;
   height: 28px;
-  background: #004072; // не нашел такого цвета
+  background: $dcb600; // не нашел такого цвета
 
   &__nav-icon {
     width: 40px;
