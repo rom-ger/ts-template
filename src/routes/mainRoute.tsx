@@ -1,12 +1,19 @@
 import * as React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'mobx-react';
 import MatLab from '../modules/matlab/components/MatLab';
 import Simulink from '../modules/simulink/components/Simulink';
+import directoryStore from '../modules/matlab/store/directoryStore';
+
+const store = { directoryStore };
 
 const MainRouter = () => {
     return (
-        <HashRouter>
-            <Switch>
+        <Provider
+            { ...store }
+        >
+            <HashRouter>
+                <Switch>
                     <Switch>
                         <Route
                             path="/"
@@ -24,8 +31,9 @@ const MainRouter = () => {
                             component={Simulink}
                         />
                     </Switch>
-            </Switch>
-        </HashRouter>
+                </Switch>
+            </HashRouter>
+        </Provider>
     );
 };
 

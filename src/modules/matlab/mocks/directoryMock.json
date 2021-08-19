@@ -1,0 +1,212 @@
+[
+  {
+    "mtime": 1629127703.0,
+    "name": ".editorconfig",
+    "path": "",
+    "size": 329,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": ".mailmap",
+    "path": "",
+    "size": 11997,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "CONTRIBUTING.md",
+    "path": "",
+    "size": 3734,
+    "type": "file"
+  },
+  {
+    "mtime": 1629197051.7903872,
+    "name": "docs",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "graph.png",
+    "path": "",
+    "size": 30128,
+    "type": "file"
+  },
+  {
+    "mtime": 1629197051.8193872,
+    "name": "examples",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "readthedocs.yml",
+    "path": "",
+    "size": 61,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "COPYING.rst",
+    "path": "",
+    "size": 1639,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "run_flask_ipy.py",
+    "path": "",
+    "size": 123,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "README.rst",
+    "path": "",
+    "size": 6344,
+    "type": "file"
+  },
+  {
+    "mtime": 1629197051.8393872,
+    "name": "js",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "pytest.ini",
+    "path": "",
+    "size": 34,
+    "type": "file"
+  },
+  {
+    "mtime": 1629197051.9473872,
+    "name": "tools",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629197051.8263872,
+    "name": "images",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "MANIFEST.in",
+    "path": "",
+    "size": 820,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "setupegg.py",
+    "path": "",
+    "size": 217,
+    "type": "file"
+  },
+  {
+    "mtime": 1629197051.7013872,
+    "name": "IPython",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "setup.cfg",
+    "path": "",
+    "size": 104,
+    "type": "file"
+  },
+  {
+    "mtime": 1629197051.8733873,
+    "name": "setupext",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629197051.8553872,
+    "name": "scripts",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "setupbase.py",
+    "path": "",
+    "size": 14091,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": ".flake8",
+    "path": "",
+    "size": 143,
+    "type": "file"
+  },
+  {
+    "mtime": 1629197051.8203871,
+    "name": "fonts",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "appveyor.yml",
+    "path": "",
+    "size": 772,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "codecov.yml",
+    "path": "",
+    "size": 136,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "mypy.ini",
+    "path": "",
+    "size": 82,
+    "type": "file"
+  },
+  {
+    "mtime": 1629197051.7203872,
+    "name": "css",
+    "path": "",
+    "size": 4096,
+    "type": "dir"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "LICENSE",
+    "path": "",
+    "size": 1720,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": ".meeseeksdev.yml",
+    "path": "",
+    "size": 380,
+    "type": "file"
+  },
+  {
+    "mtime": 1629127703.0,
+    "name": "setup.py",
+    "path": "",
+    "size": 8851,
+    "type": "file"
+  }
+]
