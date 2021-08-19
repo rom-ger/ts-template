@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// @ts-ignore
+import classNames from 'classnames/bind';
 
 const BUTTONS = ['HOME', 'PLOTS', 'APPS'];
 
@@ -6,54 +8,63 @@ const MatLab = () => {
     const [selectTabIndex, setSelectTabIndex] = useState<number>(0);
 
     return (
-        <>
-            <div className="tablist-wrapper">
-                <div className="top-left-icon">
-                    <a href="https://www.mathworks.com/products/matlab.html" target="_blank">
-                        <div className="top-left-icon-temp"></div>
-                    </a>
-                </div>
-                <div className="header-tablist">
+        <div className="application-container">
+            <div className="header-toolstrip">
+                <div className="toolstrip-nav">
+                    <div className="toolstrip-nav__nav-icon">
+
+                    </div>
                     {
                         BUTTONS.map((name: string, index: number) =>
                             <div
-                                className={`header-tab ${selectTabIndex === index ? 'header-tab--selected' : ''}`}
+                                className={classNames(
+                                    'toolstrip-nav__tab',
+                                    {
+                                        'toolstrip-nav__tab-selected': selectTabIndex === index,
+                                    },
+                                )}
                                 onClick={() => setSelectTabIndex(index)}
                                 key={index}
                             >
-                                <span className="header-tab-title">{name}</span>
+                                {name}
                             </div>,
                         )
                     }
                 </div>
-            </div>
-            {selectTabIndex === 0 && (
-                <div className="header-tab-wrapper">HOME buttons</div>
-            )}
-            {selectTabIndex === 1 && (
-                <div className="header-tab-wrapper">PLOTS buttons</div>
-            )}
-            {selectTabIndex === 2 && (
-                <div className="header-tab-wrapper">APPS buttons</div>
-            )}
-            <div className="main-section">
-                <div className="folder-path">
-                    /folder/path
+                <div className="tools">
+                    {selectTabIndex === 0 && (
+                        <div className="header-tab-wrapper">HOME tools</div>
+                    )}
+                    {selectTabIndex === 1 && (
+                        <div className="header-tab-wrapper">PLOTS tools</div>
+                    )}
+                    {selectTabIndex === 2 && (
+                        <div className="header-tab-wrapper">APPS tools</div>
+                    )}
                 </div>
-                <div className="code-area">
+            </div>
+            <div className="workarea">
+                <div className="workarea-path">
+                    /path
+                </div>
+                <div className="workarea-main">
                     <div className="sidebar">
-                        <div className="current-folder">current folder</div>
-                        <div className="variable-inspector">variables</div>
+                        <div className="sidebar__file-system">current folder</div>
+                        <div className="sidebar__variables-inspector">Workspace</div>
                     </div>
-                    <div className="notebook-area">
-                        <div className="banner">New to MATLAB? See resources for <a href="https://www.mathworks.com/help/matlab/getting-started-with-matlab.html">Getting Started</a>
+                    <div className="workarea-notebook">
+                        <div className="workarea-notebook__banner">
+                            New to MATLAB? See resources for&nbsp;
+                            <a href="https://www.mathworks.com/help/matlab/getting-started-with-matlab.html"
+                               target="_blank">Getting Started</a>
                         </div>
-                        <div className="notebook"></div>
                     </div>
                 </div>
+                <div className="footer"></div>
             </div>
-        </>
-    );
+        </div>
+    )
+        ;
 };
 
 export default MatLab;
