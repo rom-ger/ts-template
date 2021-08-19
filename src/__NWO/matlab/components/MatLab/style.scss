@@ -1,0 +1,114 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  background: $bs010;
+  font: 13px/1.231 sans-serif;
+}
+
+.application-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: stretch;
+}
+
+.header-toolstrip {
+  width: 100%;
+}
+
+.toolstrip-nav {
+  display: flex;
+  align-items: flex-end;
+  height: 28px;
+  background: $dcb600; // не нашел такого цвета
+
+  &__nav-icon {
+    width: 40px;
+    height: 28px;
+  }
+
+  &__tab {
+    display: flex;
+    cursor: default;
+    overflow: visible;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    padding: 2px 8px;
+    min-width: 90px;
+    border-radius: 0;
+    color: $bs000;
+
+    &-selected {
+      color: black;
+      border-radius: 2px 2px 0px 0px;
+      background: $bs035;
+    }
+  }
+}
+
+.tools {
+  height: 92px;
+  padding: 10px;
+  background: $bs035;
+  border-bottom: 1px solid $bs070;
+}
+
+.workarea {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.workarea-path {
+  height: 27px;
+  padding: 5px 8px;
+  border-bottom: 1px solid $bs070;
+  background: $bs000;
+}
+
+.workarea-main {
+  display: flex;
+  flex-grow: 1;
+}
+
+.sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  width: 20%;
+  background: $bs020;
+
+  &__file-system {
+    width: 100%;
+    padding: 5px 8px;
+    border-right: 1px solid $bs070;
+    border-bottom: 1px solid $bs070;
+  }
+
+  &__variables-inspector {
+    width: 100%;
+    padding: 5px 8px;
+    border-right: 1px solid $bs070;
+  }
+}
+
+.workarea-notebook {
+  width: 80%;
+  background: $bs000;
+}
+
+.footer{
+  height: 21px;
+  background: $bs035;
+  border-top: 1px solid $bs070;
+}

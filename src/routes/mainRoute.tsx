@@ -1,38 +1,29 @@
 import * as React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import MainWrap from '../modules/global/components/MainWrap';
-import MainHome from '../modules/home/components/MainHome';
-import MainApps from '../modules/apps/components/MainApps';
-import MainPlots from '../modules/plots/components/MainPlots';
+import MatLab from '../__NWO/matlab/components/MatLab';
+import Simulink from '../__NWO/simulink/components/Simulink';
 
 const MainRouter = () => {
     return (
         <HashRouter>
             <Switch>
-                <MainWrap>
                     <Switch>
                         <Route
                             path="/"
                             exact={true}
-                            component={MainHome}
+                            component={MatLab}
                         />
                         <Route
-                            path="/home"
+                            path="/matlab"
                             exact={true}
-                            component={MainHome}
+                            component={MatLab}
                         />
                         <Route
-                            path="/apps"
+                            path="/simulink"
                             exact={true}
-                            component={MainApps}
-                        />
-                        <Route
-                            path="/plots"
-                            exact={true}
-                            component={MainPlots}
+                            component={Simulink}
                         />
                     </Switch>
-                </MainWrap>
             </Switch>
         </HashRouter>
     );
