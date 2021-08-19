@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// @ts-ignore
 import classNames from 'classnames/bind';
 
 const BUTTONS = ['HOME', 'PLOTS', 'APPS'];
@@ -53,11 +52,6 @@ const MatLab = () => {
                         <div className="sidebar__variables-inspector">Workspace</div>
                     </div>
                     <div className="workarea-notebook">
-                        <div className="workarea-notebook__banner">
-                            New to MATLAB? See resources for&nbsp;
-                            <a href="https://www.mathworks.com/help/matlab/getting-started-with-matlab.html"
-                               target="_blank">Getting Started</a>
-                        </div>
                     </div>
                 </div>
                 <div className="footer"></div>
