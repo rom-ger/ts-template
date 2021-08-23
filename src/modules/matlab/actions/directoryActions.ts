@@ -11,8 +11,8 @@ class DirectoryActions extends BaseActions implements IDirectoryActions {
         super('https://localhost:5000/');
     }
 
-    getDirectories(): Promise<Directory[]> {
-        return this.getAction<IDirectoryDTO[]>('dir', directoryMock)
+    getDirectories(path: string | null): Promise<Directory[]> {
+        return this.getAction<IDirectoryDTO[]>(`dir${path ? `/${path}` : ''}`, directoryMock)
             .then(dtos => dtos.map(dto => new Directory(dto)));
     }
 }
