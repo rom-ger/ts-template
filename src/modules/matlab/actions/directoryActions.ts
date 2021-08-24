@@ -8,14 +8,12 @@ interface IDirectoryActions {
 
 class DirectoryActions extends BaseActions implements IDirectoryActions {
     constructor() {
-        super('http://178.154.225.112:5000/dir');
+        super('http://178.154.225.112:5000/');
     }
+
     getDirectories(path: string | null): Promise<Directory[]> {
-        window.console.log('path', path)
         return this.getAction<IDirectoryDTO[]>(`dir${path ? `/${path}` : ''}`, directoryMock)
-            .then((dtos) => {
-                return  dtos.map(dto => new Directory(dto))
-            });
+            .then(dtos => dtos.map(dto => new Directory(dto)));
     }
 }
 

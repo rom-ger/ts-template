@@ -13,7 +13,7 @@ const CurrentPath = inject('directoryStore')(observer(({ directoryStore }: IFile
     return (
         <>
             <span>
-                {`http://178.154.225.112:5000/dir/${directoryStore?.currentPath || ''}`}
+                {`http://178.154.225.112:5000/dir${directoryStore?.currentPath || ''}`}
             </span>
         </>
     );
