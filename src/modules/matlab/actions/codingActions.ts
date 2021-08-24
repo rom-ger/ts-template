@@ -13,7 +13,7 @@ class CodingActions extends BaseActions implements ICodingActions {
     }
 
     executeCurrentCode(code: string | null): Promise<string> {
-        return this.executeCode<string>(code ? code : '')
+        return this.postAction<string, string>('/code_processing', code || '')
             .then(dtos => dtos);
     }
 
