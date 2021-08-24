@@ -44,7 +44,7 @@ class CodingStore implements ICodingStore {
     };
 }
 
-const codingStore = new codingActions();
+const codingStore = new CodingStore();
 
 export default codingStore;
 export { CodingStore };
