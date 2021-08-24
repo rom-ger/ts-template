@@ -8,7 +8,7 @@ interface IDirectoryActions {
 
 class DirectoryActions extends BaseActions implements IDirectoryActions {
     constructor() {
-        super('http://178.154.225.112:5000/');
+        super('http://localhost:5000/');
     }
 
     getDirectories(path: string | null): Promise<Directory[]> {

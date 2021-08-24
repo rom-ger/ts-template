@@ -1,7 +1,7 @@
 interface IBaseActions {
     baseUrl: string;
     getAction: <T>(url: string) => Promise<T>;
-    executeCode: <T>(code: string) => Promise<T>;
+    postAction: <P extends BodyInit, R>(url: string, body: P) => Promise<R>;
 }
 
 class BaseActions implements IBaseActions {
@@ -19,17 +19,15 @@ class BaseActions implements IBaseActions {
             .then(response => response.json());
     }
 
-    executeCode<T>(code: string): Promise<T> {
-        const requestOptions = {
+    postAction<P extends BodyInit, R>(url: string, body: P): Promise<R> {
+        return fetch(`${this.baseUrl}${url}`, {
+            body,
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/plain;charset=UTF-8',
             },
-            body: code,
-        };
-
-        return fetch(`${this.baseUrl}/code_processing`, requestOptions)
-            .then(response => response.json())
+        })
+            .then(response => response.json());
     }
 }
 
