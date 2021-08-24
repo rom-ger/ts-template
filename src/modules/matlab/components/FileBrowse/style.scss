@@ -1,0 +1,28 @@
+.directory-row-header {
+  display: flex;
+  //position: fixed;
+  //width: 20%;
+  padding: 0 5px;
+  align-items: center;
+  height: 25px;
+  background: $bs035;
+  border-bottom: 1px solid $bs070;
+  //border-right: 1px solid $bs070;
+}
+
+.directory-row {
+  display: flex;
+  padding: 0 5px;
+  align-items: center;
+  //height: 25px;
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    background: url("assets/images/folder_black_24dp.svg") 0 no-repeat;
+  }
+
+  &__title {
+    margin-left: 2px;
+  }
+}
