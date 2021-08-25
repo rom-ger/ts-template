@@ -8,6 +8,7 @@ export interface ICodingStore {
     history: CodeRow[];
     variablesObservable: IObservableValue<Variable[]>;
     variables: Variable[];
+    executeCode: (code: string | null) => void;
 }
 
 const codingActions = new CodingActions();
@@ -31,6 +32,7 @@ class CodingStore implements ICodingStore {
 
     @action('executeCode')
     executeCode = (code: string | null) => {
+        window.console.log('code', code)
         codingActions.executeCurrentCode(code)
             .then((dtos) => {
                 this.getHistory();

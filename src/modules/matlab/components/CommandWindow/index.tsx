@@ -14,7 +14,8 @@ const CommandWindow = inject('directoryStore')(observer(({ codingStore }: ICodin
     };
 
     const passCodeOnKernel = () => {
-        return window.console.log(codeRow);
+        window.console.log('try to go kernel ====>', codeRow)
+        codingStore?.executeCode(codeRow);
     };
 
     return (

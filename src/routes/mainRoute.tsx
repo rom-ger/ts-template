@@ -4,13 +4,14 @@ import { Provider } from 'mobx-react';
 import MatLab from '../modules/matlab/components/MatLab';
 import Simulink from '../modules/simulink/components/Simulink';
 import directoryStore from '../modules/matlab/store/directoryStore';
+import codingStore from '../modules/matlab/store/codingStore';
 
-const store = { directoryStore };
+const store = { directoryStore, codingStore };
 
 const MainRouter = () => {
     return (
         <Provider
-            { ...store }
+            {...store}
         >
             <HashRouter>
                 <Switch>
@@ -37,4 +38,4 @@ const MainRouter = () => {
     );
 };
 
-export default  MainRouter;
+export default MainRouter;
