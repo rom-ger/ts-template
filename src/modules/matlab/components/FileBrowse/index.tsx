@@ -28,7 +28,7 @@ const DirectoryRow = ({ directory, setCurrentPathCallback }: IDirectoryRowProps)
         >
             <span className="directory-row__icon">
                 <ReactSVG
-                    src={'assets/images/svg/folder_black_24dp.svg'}
+                    src={'assets/images/folder_black_24dp.svg'}
                 />
             </span>
             <span className="directory-row__title">{directory.name}</span>
