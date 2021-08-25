@@ -6,7 +6,7 @@ interface ICoding {
     codingStore?: ICodingStore;
 }
 
-const CommandWindow = inject('directoryStore')(observer(({ codingStore }: ICoding) => {
+const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) => {
     const [codeRow, setCodeRow] = useState<string | null>(null);
 
     const handleCode = (e: React.FormEvent<HTMLInputElement>) => {
