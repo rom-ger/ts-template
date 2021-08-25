@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { observer, inject } from 'mobx-react';
 import { IDirectoreStore } from '../../store/directoryStore';
 import { Directory } from '../../models/Directory';
+import ReactSVG from 'react-svg';
 
 interface IFileBrowse {
     directoryStore?: IDirectoreStore;
@@ -13,15 +14,28 @@ interface IDirectoryRowProps {
 }
 
 const DirectoryRow = ({ directory, setCurrentPathCallback }: IDirectoryRowProps) => {
-    const onClick = useCallback(
+    const goTo = useCallback(
         () => {
-            setCurrentPathCallback(directory.path);
+            // setCurrentPathCallback(directory.path);
+            setCurrentPathCallback(directory.name);
         },
         [setCurrentPathCallback, directory],
     );
 
-    return (<div onClick={onClick}></div>);
-}
+    return (
+        <div
+            className="directory-row"
+            onClick={goTo}
+        >
+            <span className="directory-row__icon">
+                <ReactSVG
+                    src={'assets/images/folder_black_24dp.svg'}
+                />
+            </span>
+            <span className="directory-row__title">{directory.name}</span>
+        </div>
+    );
+};
 
 const FileBrowse = inject('directoryStore')(observer(({ directoryStore }: IFileBrowse) => {
     useEffect(
@@ -35,7 +49,10 @@ const FileBrowse = inject('directoryStore')(observer(({ directoryStore }: IFileB
         return null;
     }
     return (
-        <div>
+        <>
+            <div className="directory-row-header">
+                <span>Name</span>
+            </div>
             {
                 directoryStore.currentDirectory.map((directory, index) =>
                     <DirectoryRow
@@ -45,7 +62,7 @@ const FileBrowse = inject('directoryStore')(observer(({ directoryStore }: IFileB
                     />,
                 )
             }
-        </div>
+        </>
     );
 }));
 

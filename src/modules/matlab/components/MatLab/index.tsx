@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../Header';
-import Path from '../Path';
+import CurrentPath from '../CurrentPath';
 import FileBrowse from '../FileBrowse';
 import VariablesInspector from '../VariablesInspector';
 import CommandWindow from '../CommandWindow';
@@ -12,7 +12,7 @@ const MatLab = () => {
             <Header />
             <div className="main-workarea-container">
                 <div className="workarea-path">
-                    <Path />
+                    <CurrentPath />
                 </div>
                 <div className="workarea-development">
                     <div className="sidebar">

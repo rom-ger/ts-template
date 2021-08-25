@@ -25,7 +25,6 @@ class DirectoreStore implements IDirectoreStore {
         this.rootDirectoriesObservable = observable.box<Directory[]>([]);
         this.childDirectoriesObservable = observable.box<Map<string, Directory[]>>(new Map());
         this.currentPathObservable = observable.box<string | null>(null);
-
         this.currentPathObservable.observe(this.changeCurrentPathhEpic);
     }
 
@@ -55,7 +54,6 @@ class DirectoreStore implements IDirectoreStore {
 
     @action('get directories')
     getDirectories = (path: string | null) => {
-        console.log('get directories')
         if (!path && !!this.rootDirectories.length) {
             return;
         }
@@ -67,10 +65,10 @@ class DirectoreStore implements IDirectoreStore {
                 if (!path) {
                     return this.rootDirectoriesObservable.set(res);
                 }
-                // this.childDirectories.set(path, res);
-                let childDirectories = this.childDirectories;
-                childDirectories.set(path, res);
-                this.childDirectoriesObservable.set(childDirectories);
+                this.childDirectories.set(path, res);
+                // let childDirectories = this.childDirectories;
+                // childDirectories.set(path, res);
+                // this.childDirectoriesObservable.set(childDirectories);
             });
     }
 
