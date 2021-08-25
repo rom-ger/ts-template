@@ -31,18 +31,23 @@ class CodingStore implements ICodingStore {
 
     @action('executeCode')
     executeCode = (code: string | null) => {
-        // так и не понял что тут делать надо
         codingActions.executeCurrentCode(code)
+            .then((dtos) => {
+                this.getHistory();
+                this.getVariables();
+            });
     };
 
     @action('getHistory')
     getHistory = () => {
-        this.historyObservable.set(this.history);
+        codingActions.getCodingHistory()
+            .then(history => this.historyObservable.set(history));
     };
 
     @action('getVariables')
     getVariables = () => {
-        this.variablesObservable.set(this.variables);
+        codingActions.getAllVars()
+            .then(vars => this.variablesObservable.set(vars))
     };
 }
 

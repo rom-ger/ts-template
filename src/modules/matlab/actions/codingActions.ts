@@ -1,9 +1,10 @@
 import { BaseActions } from '../../global/actions/baseActions';
 import { IVariableDTO, Variable } from '../models/Variable';
+import { CodeRow, ICodeRowDTO } from '../models/CodeRow';
 
 interface ICodingActions {
     executeCurrentCode: (code: string | null) => Promise<string>;
-    getCodingHistory: () => Promise<object>;
+    getCodingHistory: () => Promise<CodeRow[]>;
     getAllVars: () => Promise<Variable[]>
 }
 
@@ -17,8 +18,8 @@ class CodingActions extends BaseActions implements ICodingActions {
             .then(dtos => dtos);
     }
 
-    getCodingHistory(): Promise<object> {
-        return this.getAction<object>('history')
+    getCodingHistory(): Promise<CodeRow[]> {
+        return this.getAction<ICodeRowDTO[]>('history')
             .then(dtos => dtos);
     }
 

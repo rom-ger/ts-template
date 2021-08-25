@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { observer, inject } from 'mobx-react';
 import { IDirectoreStore } from '../../store/directoryStore';
 import { Directory } from '../../models/Directory';
+// import ReactSVG from 'react-svg';
 
 interface IFileBrowse {
     directoryStore?: IDirectoreStore;
@@ -25,7 +26,11 @@ const DirectoryRow = ({ directory, setCurrentPathCallback }: IDirectoryRowProps)
             className="directory-row"
             onClick={goTo}
         >
-            <span className="directory-row__icon"></span>
+            <span className="directory-row__icon">
+                {/*<ReactSVG*/}
+                {/*    src={'assets/images/svg/folder_black_24dp.svg'}*/}
+                {/*/>*/}
+            </span>
             <span className="directory-row__title">{directory.name}</span>
         </div>
     );
