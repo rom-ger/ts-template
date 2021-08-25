@@ -1,6 +1,6 @@
 {
   "APPLICATION_DIST_PATH": "./dist",
-  "APPLICATION_BROWSERSYNC_PORT": 3000,
+  "APPLICATION_BROWSERSYNC_PORT": 8080,
   "styles": {
     "mainStylesPaths": [
       "./src/styles/common.scss"

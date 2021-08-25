@@ -10,7 +10,7 @@ interface ICodingActions {
 
 class CodingActions extends BaseActions implements ICodingActions {
     constructor() {
-        super('http://178.154.225.112:5000/');
+        super('http://localhost:5000');
     }
 
     executeCurrentCode(code: string | null): Promise<string> {

@@ -65,10 +65,10 @@ class DirectoreStore implements IDirectoreStore {
                 if (!path) {
                     return this.rootDirectoriesObservable.set(res);
                 }
-                // this.childDirectories.set(path, res);
-                let childDirectories = this.childDirectories;
-                childDirectories.set(path, res);
-                this.childDirectoriesObservable.set(childDirectories);
+                this.childDirectories.set(path, res);
+                // let childDirectories = this.childDirectories;
+                // childDirectories.set(path, res);
+                // this.childDirectoriesObservable.set(childDirectories);
             });
     }
 

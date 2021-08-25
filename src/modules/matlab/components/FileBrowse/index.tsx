@@ -16,7 +16,8 @@ interface IDirectoryRowProps {
 const DirectoryRow = ({ directory, setCurrentPathCallback }: IDirectoryRowProps) => {
     const goTo = useCallback(
         () => {
-            setCurrentPathCallback(directory.path);
+            // setCurrentPathCallback(directory.path);
+            setCurrentPathCallback(directory.name);
         },
         [setCurrentPathCallback, directory],
     );
