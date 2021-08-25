@@ -3,7 +3,7 @@ import { IVariableDTO, Variable } from '../models/Variable';
 
 interface ICodingActions {
     executeCurrentCode: (code: string | null) => Promise<string>;
-    getDevHistory: () => Promise<object>;
+    getCodingHistory: () => Promise<object>;
     getAllVars: () => Promise<Variable[]>
 }
 
@@ -17,7 +17,7 @@ class CodingActions extends BaseActions implements ICodingActions {
             .then(dtos => dtos);
     }
 
-    getDevHistory(): Promise<object> {
+    getCodingHistory(): Promise<object> {
         return this.getAction<object>('history')
             .then(dtos => dtos);
     }

@@ -1,10 +1,11 @@
-import { action, observable, IObservableValue, IValueDidChange, computed } from 'mobx';
+import { action, observable, IObservableValue, computed } from 'mobx';
 import { Variable } from '../models/Variable';
+import { CodeRow } from '../models/CodeRow';
 import { CodingActions } from '../actions/codingActions';
 
 export interface ICodingStore {
-    historyObservable: IObservableValue<object>;
-    history: object;
+    historyObservable: IObservableValue<CodeRow[]>;
+    history: CodeRow[];
     variablesObservable: IObservableValue<Variable[]>;
     variables: Variable[];
 }
@@ -12,11 +13,11 @@ export interface ICodingStore {
 const codingActions = new CodingActions();
 
 class CodingStore implements ICodingStore {
-    @observable historyObservable: IObservableValue<object>;
+    @observable historyObservable: IObservableValue<CodeRow[]>;
     @observable variablesObservable: IObservableValue<Variable[]>;
 
     constructor() {
-        this.historyObservable = observable.box<object>({});
+        this.historyObservable = observable.box<CodeRow[]>();
         this.variablesObservable = observable.box<Variable[]>([]);
     }
 
@@ -30,17 +31,18 @@ class CodingStore implements ICodingStore {
 
     @action('executeCode')
     executeCode = (code: string | null) => {
-        // тут непонятно как мы это должны из input тут получать
+        // так и не понял что тут делать надо
+        codingActions.executeCurrentCode(code)
     };
 
     @action('getHistory')
-    getHistory = (history: object | {}) => {
-        this.historyObservable.set(history);
+    getHistory = () => {
+        this.historyObservable.set(this.history);
     };
 
     @action('getVariables')
-    getVariables = (variables: Variable[] | []) => {
-        this.variablesObservable.set(variables);
+    getVariables = () => {
+        this.variablesObservable.set(this.variables);
     };
 }
 
