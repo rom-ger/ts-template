@@ -12,7 +12,7 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-router-dom": "4.2.2",
-    "react-svg": "14.0.8"
+    "react-svg": "7.2.14"
   },
   "devDependencies": {
     "@babel/core": "7.10.5",
