@@ -32,12 +32,12 @@ class CodingStore implements ICodingStore {
 
     @action('executeCode')
     executeCode = (code: string | null) => {
-        window.console.log('code', code)
         codingActions.executeCurrentCode(code)
             .then((dtos) => {
-                this.getHistory();
                 this.getVariables();
-            });
+                this.getHistory();
+            })
+            .catch(e => window.console.log('e', e))
     };
 
     @action('getHistory')
@@ -49,7 +49,10 @@ class CodingStore implements ICodingStore {
     @action('getVariables')
     getVariables = () => {
         codingActions.getAllVars()
-            .then(vars => this.variablesObservable.set(vars))
+            .then((vars) => {
+                window.console.log('vars', vars)
+                this.variablesObservable.set(vars)
+            })
     };
 }
 

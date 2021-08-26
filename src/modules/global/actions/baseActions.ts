@@ -23,9 +23,6 @@ class BaseActions implements IBaseActions {
         return fetch(`${this.baseUrl}${url}`, {
             body,
             method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain;charset=UTF-8',
-            },
         })
             .then(response => response.json());
     }

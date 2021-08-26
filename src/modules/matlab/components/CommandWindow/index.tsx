@@ -19,21 +19,21 @@ const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) 
     };
 
     return (
-        <>
+        <div className="code-row">
             <input
+                className="code-row__code"
                 type="text"
                 placeholder="typecode"
-                style={{ width: '100%' }}
                 value={codeRow || ''}
                 onChange={handleCode}
             />
             <button
-                style={{ border: '1px solid #eee', background: '#eee', borderRadius: '5px', cursor: 'pointer' }}
+                className="code-row__exec-btn"
                 onClick={passCodeOnKernel}
             >
                 execute
             </button>
-        </>
+        </div>
     );
 }));
 
