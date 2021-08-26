@@ -34,8 +34,8 @@ class CodingStore implements ICodingStore {
     executeCode = (code: string | null) => {
         codingActions.executeCurrentCode(code)
             .then((dtos) => {
-                this.getVariables();
                 this.getHistory();
+                this.getVariables();
             })
             .catch(e => window.console.log('e', e))
     };
@@ -43,7 +43,10 @@ class CodingStore implements ICodingStore {
     @action('getHistory')
     getHistory = () => {
         codingActions.getCodingHistory()
-            .then(history => this.historyObservable.set(history));
+            .then((history) => {
+                window.console.log('history', history)
+                this.historyObservable.set(history)
+            });
     };
 
     @action('getVariables')

@@ -14,26 +14,27 @@ const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) 
     };
 
     const passCodeOnKernel = () => {
-        window.console.log('try to go kernel ====>', codeRow)
         codingStore?.executeCode(codeRow);
     };
 
     return (
-        <div className="code-row">
-            <input
-                className="code-row__code"
-                type="text"
-                placeholder="typecode"
-                value={codeRow || ''}
-                onChange={handleCode}
-            />
-            <button
-                className="code-row__exec-btn"
-                onClick={passCodeOnKernel}
-            >
-                execute
-            </button>
-        </div>
+        <>
+            <div className="code-row">
+                <input
+                    className="code-row__code"
+                    type="text"
+                    placeholder="typecode"
+                    value={codeRow || ''}
+                    onChange={handleCode}
+                />
+                <button
+                    className="code-row__exec-btn"
+                    onClick={passCodeOnKernel}
+                >
+                    execute
+                </button>
+            </div>
+        </>
     );
 }));
 

@@ -22,12 +22,12 @@ class CodingActions extends BaseActions implements ICodingActions {
     }
 
     getCodingHistory(): Promise<CodeRow[]> {
-        return this.getAction<ICodeRowDTO[]>('history')
+        return this.getAction<ICodeRowDTO[]>('/history')
             .then(dtos => dtos);
     }
 
     getAllVars(): Promise<Variable[]> {
-        return this.getAction<IVariableDTO[]>('vars')
+        return this.getAction<IVariableDTO[]>('/workspace')
             .then(dtos => dtos.map(dto => new Variable(dto)));
     }
 }

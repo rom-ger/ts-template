@@ -1,23 +1,23 @@
 interface IVariableDTO {
     name: string;
-    size: number;
+    type: string;
     value: string;
 }
 
 interface IVariable {
     name: string;
-    size: number;
+    type: string;
     value: string;
 }
 
 class Variable implements IVariable {
     name: string;
-    size: number;
+    type: string;
     value: string;
 
     constructor(dto: IVariableDTO) {
         this.name = dto.name;
-        this.size = dto.size;
+        this.type = dto.type;
         this.value = dto.value;
     }
 }
