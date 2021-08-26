@@ -19,9 +19,10 @@ class BaseActions implements IBaseActions {
             .then(response => response.json());
     }
 
-    postAction<P extends BodyInit, R>(url: string, body: P): Promise<R> {
+    postAction<P, R>(url: string, body: P): Promise<R> {
+        const validBody = {...body} as any;
         return fetch(`${this.baseUrl}${url}`, {
-            body,
+            body: validBody,
             method: 'POST',
         })
             .then(response => response.json());
