@@ -7,24 +7,26 @@ interface IFileBrowse {
 }
 
 const CurrentPath = inject('directoryStore')(observer(({ directoryStore }: IFileBrowse) => {
-    const [splitDirs, setsplitDirs] = useState<string[] | null>([]);
+    const [splitDirs, setSplitDirs] = useState<string[] | null>([]);
 
     useEffect(
         () => {
             if (directoryStore?.currentPath) {
-                setsplitDirs(directoryStore.currentPath.split('/'));
+                setSplitDirs(directoryStore.currentPath
+                                 .split('/')
+                                 .filter(el => el.length !== 0));
             }
         },
         [directoryStore?.currentPath],
     );
 
-    const goToDir = (e: React.FormEvent<HTMLSpanElement>) => {
-        let dirName = e.currentTarget.textContent;
+    const goToDir = (index: number) => {
+        let dirName = splitDirs?.length ? splitDirs[index] : '';
 
         if (dirName && splitDirs) {
-            let idx = splitDirs.indexOf(dirName.replace('/', ''));
+            let idx = splitDirs.indexOf(dirName);
             let path = `/${splitDirs
-                .filter((d, index) => index <= idx && d.length)
+                .filter((d, i) => i <= idx && d.length)
                 .join('/')}`;
 
             directoryStore?.setCurrentPath(path);
@@ -44,7 +46,7 @@ const CurrentPath = inject('directoryStore')(observer(({ directoryStore }: IFile
                         {splitDirs
                             .filter(d => d.length !== 0)
                             .map((d, index) =>
-                                <span key={index} onClick={goToDir}>/{d}</span>,
+                                     <span key={index} onClick={() => goToDir(index)}>/{d}</span>,
                             )}
                     </div>
                 ) : (
