@@ -10,26 +10,24 @@ const MatLab = () => {
     return (
         <div className="main-container">
             <Header />
-            <div className="main-workarea-container">
-                <div className="workarea-path">
-                    <CurrentPath />
-                </div>
-                <div className="workarea-development">
-                    <div className="sidebar">
-                        <div className="sidebar__file-browse">
-                            <FileBrowse />
-                        </div>
-                        <div className="sidebar__variables-inspector">
-                            <VariablesInspector />
-                        </div>
+            <div className="workarea-path">
+                <CurrentPath />
+            </div>
+            <div className="workarea-development">
+                <div className="sidebar">
+                    <div className="sidebar__file-browse">
+                        <FileBrowse />
                     </div>
-                    <div className="workarea-command-window">
-                        <CommandWindow />
+                    <div className="sidebar__variables-inspector">
+                        <VariablesInspector />
                     </div>
                 </div>
-                <div className="workarea-footer">
-                    <Footer />
+                <div className="workarea-command-window">
+                    <CommandWindow />
                 </div>
+            </div>
+            <div className="workarea-footer">
+                <Footer />
             </div>
         </div>
     );
