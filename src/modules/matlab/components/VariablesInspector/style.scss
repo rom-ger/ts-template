@@ -15,11 +15,13 @@
 
 .workspace-row {
   display: flex;
+  justify-content: space-between;
   padding: 5px 5px;
   align-items: center;
 
   &__item {
     width: calc(100% / 3);
+    overflow-x: hidden;
   }
 }
 

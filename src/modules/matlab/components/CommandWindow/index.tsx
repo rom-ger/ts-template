@@ -11,7 +11,7 @@ const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) 
 
     useEffect(
         () => {
-            codingStore?.getHistory()
+            codingStore?.getHistory();
         },
         [],
     );
@@ -22,25 +22,40 @@ const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) 
 
     const passCodeOnKernel = () => {
         codingStore?.executeCode(codeRow);
+        setCodeRow(null)
     };
 
     return (
         <>
-            {/*{codingStore?.history && (*/}
-            {/*    codingStore?.history.map(h => (*/}
-            {/*        <div>{JSON.stringify(h)}</div>*/}
-            {/*    ))*/}
-            {/*)}*/}
-            <div className="code-row">
+            {codingStore?.history && (
+                codingStore?.history.map((inout, index) => (
+                    <div
+                        className="inout-row"
+                        key={index}
+                    >
+                        <div className="inout-row__in">
+                            <span>[ {index + 1} ] : </span>
+                            <span>{inout.In}</span>
+                        </div>
+                        {inout.Out && inout.Out !== 'None' && (
+                            <div className="inout-row__out">
+                                <span>[ {index + 1} ] : </span>
+                                <span>{inout.Out}</span>
+                            </div>
+                        )}
+                    </div>
+                ))
+            )}
+            <div className="input-code-row">
                 <input
-                    className="code-row__code"
+                    className="input-code-row__code"
                     type="text"
                     placeholder="typecode"
                     value={codeRow || ''}
                     onChange={handleCode}
                 />
                 <button
-                    className="code-row__exec-btn"
+                    className="input-code-row__exec-btn"
                     onClick={passCodeOnKernel}
                 >
                     execute

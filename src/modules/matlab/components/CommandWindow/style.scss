@@ -1,7 +1,19 @@
-.code-row {
+.inout-row{
+  padding: 8px 8px;
+
+  &__in{
+  }
+
+  &__out{
+    margin-top: 5px;
+  }
+}
+
+.input-code-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  padding: 8px 8px;
 
   &__code{
     width: 100%;
