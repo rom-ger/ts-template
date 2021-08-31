@@ -17,7 +17,6 @@ const DirectoryRow = ({ directory, setCurrentPathCallback }: IDirectoryRowProps)
     const goTo = useCallback(
         () => {
             setCurrentPathCallback((directory.path).replace('ipython', 'dir'));
-            // setCurrentPathCallback(directory.name);
         },
         [setCurrentPathCallback, directory],
     );

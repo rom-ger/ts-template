@@ -10,6 +10,7 @@ export interface ICodingStore {
     variables: Variable[];
     executeCode: (code: string | null) => void;
     getHistory: () => void;
+    getVariables: () => void;
 }
 
 const codingActions = new CodingActions();
