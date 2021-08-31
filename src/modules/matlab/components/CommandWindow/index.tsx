@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import { ICodingStore } from '../../store/codingStore';
 
@@ -8,6 +8,13 @@ interface ICoding {
 
 const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) => {
     const [codeRow, setCodeRow] = useState<string | null>(null);
+
+    useEffect(
+        () => {
+            codingStore?.getHistory()
+        },
+        [],
+    );
 
     const handleCode = (e: React.FormEvent<HTMLInputElement>) => {
         setCodeRow(e.currentTarget.value);
@@ -19,6 +26,11 @@ const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) 
 
     return (
         <>
+            {/*{codingStore?.history && (*/}
+            {/*    codingStore?.history.map(h => (*/}
+            {/*        <div>{JSON.stringify(h)}</div>*/}
+            {/*    ))*/}
+            {/*)}*/}
             <div className="code-row">
                 <input
                     className="code-row__code"
