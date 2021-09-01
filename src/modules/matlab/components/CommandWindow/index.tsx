@@ -8,6 +8,9 @@ interface ICoding {
 
 const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) => {
     const [codeRow, setCodeRow] = useState<string | null>(null);
+    const [currentRowsAmount, setCurrentRowsAmount] = useState<number>(1);
+    const [minRows] = useState<number>(1);
+    const [maxRows] = useState<number>(20);
 
     useEffect(
         () => {
@@ -16,50 +19,81 @@ const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) 
         [],
     );
 
-    const handleCode = (e: React.FormEvent<HTMLInputElement>) => {
+    useEffect(
+        () => {
+            scrollToEndByClassName('.code-history-container');
+        },
+        [codingStore?.history],
+    );
+
+    const handleCode = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const textareaLineHeight = 24;
+        const previousRows = e.currentTarget.rows;
+        e.currentTarget.rows = minRows;
+        const currentRows = Math.floor((e.currentTarget.scrollHeight / textareaLineHeight));
+
+        if (currentRows === previousRows) {
+            e.currentTarget.rows = currentRows;
+        }
+
+        if (currentRows >= maxRows) {
+            e.currentTarget.rows = maxRows;
+            e.currentTarget.scrollTop = e.currentTarget.scrollHeight;
+        }
+
+        setCurrentRowsAmount(currentRows < maxRows ? currentRows : maxRows);
         setCodeRow(e.currentTarget.value);
     };
 
-    const passCodeOnKernel = () => {
-        codingStore?.executeCode(codeRow);
-        setCodeRow(null)
+    const passCodeOnKernel = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && e.shiftKey) {
+            codingStore?.executeCode(codeRow)
+            setCodeRow(null);
+            setCurrentRowsAmount(1);
+            setTimeout(() => scrollToEndByClassName('.code-history-container'), 100)
+        }
+    };
+
+    const scrollToEndByClassName = (className: string) => {
+        const element = document.querySelector(className);
+
+        if (element instanceof HTMLElement) {
+            element.scrollTop = element.scrollHeight;
+        }
     };
 
     return (
         <>
-            {codingStore?.history && (
-                codingStore?.history.map((inout, index) => (
-                    <div
-                        className="inout-row"
-                        key={index}
-                    >
-                        <div className="inout-row__in">
-                            <span>[ {index + 1} ] : </span>
-                            <span>{inout.In}</span>
-                        </div>
-                        {inout.Out && inout.Out !== 'None' && (
-                            <div className="inout-row__out">
+            <div className="code-history-container">
+                {codingStore?.history && (
+                    codingStore?.history.map((inout, index) => (
+                        <div
+                            className="inout-row"
+                            key={index}
+                        >
+                            <div className="inout-row__in">
                                 <span>[ {index + 1} ] : </span>
-                                <span>{inout.Out}</span>
+                                <span>{inout.In}</span>
                             </div>
-                        )}
-                    </div>
-                ))
-            )}
+                            {inout.Out && inout.Out !== 'None' && (
+                                <div className="inout-row__out">
+                                    <span>[ {index + 1} ] : </span>
+                                    <span>{inout.Out}</span>
+                                </div>
+                            )}
+                        </div>
+                    ))
+                )}
+            </div>
             <div className="input-code-row">
-                <input
+                <textarea
                     className="input-code-row__code"
-                    type="text"
+                    rows={currentRowsAmount}
                     placeholder="typecode"
                     value={codeRow || ''}
+                    onKeyUp={passCodeOnKernel}
                     onChange={handleCode}
                 />
-                <button
-                    className="input-code-row__exec-btn"
-                    onClick={passCodeOnKernel}
-                >
-                    execute
-                </button>
             </div>
         </>
     );

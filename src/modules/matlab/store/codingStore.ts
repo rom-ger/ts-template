@@ -36,8 +36,6 @@ class CodingStore implements ICodingStore {
     executeCode = (code: string | null) => {
         codingActions.executeCurrentCode(code)
             .then((dtos) => {
-                // this.getHistory();
-                window.console.log('dtos', dtos)
                 const codeRow = {
                     In: code || '',
                     Out: dtos.output,
@@ -52,7 +50,6 @@ class CodingStore implements ICodingStore {
     getHistory = () => {
         codingActions.getCodingHistory()
             .then((history) => {
-                window.console.log('history', history);
                 this.historyObservable.set(history);
             });
     };
@@ -61,7 +58,6 @@ class CodingStore implements ICodingStore {
     getVariables = () => {
         codingActions.getAllVars()
             .then((vars) => {
-                window.console.log('vars', vars);
                 this.variablesObservable.set(vars);
             });
     };

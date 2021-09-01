@@ -70,6 +70,8 @@ body {
 }
 
 .workarea-command-window {
+  display: flex;
+  flex-direction: column;
   width: 80%;
   padding: 15px;
   background: $bs000;
