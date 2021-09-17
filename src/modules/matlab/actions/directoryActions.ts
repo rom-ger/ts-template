@@ -13,7 +13,7 @@ class DirectoryActions extends BaseActions implements IDirectoryActions {
 
     getDirectories(path: string | null): Promise<Directory[]> {
         // return this.getAction<IDirectoryDTO[]>(`dir${path ? `/${path}` : ''}`, directoryMock)
-        return this.getAction<IDirectoryDTO[]>(`/dir${path ? `/${path}` : ''}`)
+        return this.getAction<IDirectoryDTO[]>(`${path || '/dir'}`)
             .then(dtos => dtos.map(dto => new Directory(dto)));
     }
 }

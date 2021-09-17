@@ -1,21 +1,21 @@
 interface ICodeRowDTO {
-    in: string;
-    out: string;
+    In: string;
+    Out: string;
 }
 
 interface ICodeRow {
-    in: string;
-    out: string;
+    In: string;
+    Out: string;
 }
 
 class CodeRow implements ICodeRow {
-    in: string;
-    out: string;
+    In: string;
+    Out: string;
 
     constructor(dto: ICodeRowDTO) {
 
-        this.in = dto.in;
-        this.out = dto.out;
+        this.In = dto.In;
+        this.Out = dto.Out;
     }
 }
 

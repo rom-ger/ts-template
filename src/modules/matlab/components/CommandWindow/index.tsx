@@ -1,38 +1,36 @@
 import React, { useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import { ICodingStore } from '../../store/codingStore';
+import CommandHistory from '../CommandHistory';
+import CommandLine from '../CommandLine';
+import LiveScript from '../LiveScript';
 
 interface ICoding {
     codingStore?: ICodingStore;
 }
 
 const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) => {
-    const [codeRow, setCodeRow] = useState<string | null>(null);
-
-    const handleCode = (e: React.FormEvent<HTMLInputElement>) => {
-        setCodeRow(e.currentTarget.value);
+    const [amount, setAmount] = useState<number>(0);
+    const test = () => {
+        if (amount === 1) {
+            setAmount(amount - 1);
+        } else {
+            setAmount(amount + 1);
+        }
     };
-
-    const passCodeOnKernel = () => {
-        window.console.log('try to go kernel ====>', codeRow)
-        codingStore?.executeCode(codeRow);
-    };
-
     return (
         <>
-            <input
-                type="text"
-                placeholder="typecode"
-                style={{ width: '100%' }}
-                value={codeRow || ''}
-                onChange={handleCode}
-            />
             <button
-                style={{ border: '1px solid #eee', background: '#eee', borderRadius: '5px', cursor: 'pointer' }}
-                onClick={passCodeOnKernel}
+                className="new-script-btn"
+                onClick={test}
             >
-                execute
+                New Script
             </button>
+            {amount === 1 && (
+                <LiveScript />
+            )}
+            <CommandHistory />
+            <CommandLine />
         </>
     );
 }));

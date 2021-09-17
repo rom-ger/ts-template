@@ -15,17 +15,9 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: stretch;
-}
-
-.main-workarea-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   align-items: stretch;
-  width: 100%;
-  flex-grow: 1;
+  justify-content: flex-start;
+  overflow: hidden;
 }
 
 .workarea-path {
@@ -35,9 +27,22 @@ body {
   background: $bs000;
 }
 
+// .main-workarea-container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: stretch;
+//   width: 100%;
+//   flex-grow: 1;
+// }
+
 .workarea-development {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
   flex-grow: 1;
+  max-height: calc(100vh - 168px);
 }
 
 .sidebar {
@@ -59,14 +64,18 @@ body {
   &__variables-inspector {
     width: 100%;
     height: 50%;
-    padding: 5px 8px;
     border-right: 1px solid $bs070;
+    overflow: auto;
   }
 }
 
 .workarea-command-window {
+  display: flex;
+  flex-direction: column;
   width: 80%;
+  padding: 15px;
   background: $bs000;
+  overflow: auto;
 }
 
 .workarea-footer{

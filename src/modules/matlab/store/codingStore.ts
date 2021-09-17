@@ -9,6 +9,8 @@ export interface ICodingStore {
     variablesObservable: IObservableValue<Variable[]>;
     variables: Variable[];
     executeCode: (code: string | null) => void;
+    getHistory: () => void;
+    getVariables: () => void;
 }
 
 const codingActions = new CodingActions();
@@ -32,24 +34,37 @@ class CodingStore implements ICodingStore {
 
     @action('executeCode')
     executeCode = (code: string | null) => {
-        window.console.log('code', code)
         codingActions.executeCurrentCode(code)
             .then((dtos) => {
-                this.getHistory();
+                const codeRow = {
+                    In: code || '',
+                    Out: dtos.output,
+                }
+                this.addNewCodeRow(codeRow)
                 this.getVariables();
-            });
+            })
+            .catch(e => window.console.log('e', e));
     };
 
     @action('getHistory')
     getHistory = () => {
         codingActions.getCodingHistory()
-            .then(history => this.historyObservable.set(history));
+            .then((history) => {
+                this.historyObservable.set(history);
+            });
     };
 
     @action('getVariables')
     getVariables = () => {
         codingActions.getAllVars()
-            .then(vars => this.variablesObservable.set(vars))
+            .then((vars) => {
+                this.variablesObservable.set(vars);
+            });
+    };
+
+    @action('add new history')
+    addNewCodeRow = (codeHistoryItem: CodeRow) => {
+        this.history.push(codeHistoryItem);
     };
 }
 

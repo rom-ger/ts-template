@@ -1,0 +1,40 @@
+.workspace {
+}
+
+.workspace-header {
+  display: flex;
+  align-items: center;
+  padding: 5px 5px;
+  background: $bs035;
+  border-bottom: 1px solid $bs070;
+
+  &__item {
+    width: calc(100% / 3);
+  }
+}
+
+.workspace-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 5px;
+  align-items: center;
+
+  &__item {
+    width: calc(100% / 3);
+    overflow-x: hidden;
+  }
+}
+
+.var-elem {
+  display: flex;
+  align-items: center;
+
+  &__icon{
+    height: 22px;
+    width: 22px;
+  }
+
+  &__title{
+    margin-left: 8px;
+  }
+}

@@ -1,0 +1,25 @@
+.code-history-container {
+  overflow: scroll;
+}
+
+.inout-row {
+  padding: 8px 8px;
+
+  &__in {
+  }
+
+  &__out {
+    margin: 5px 0 0 15px;
+  }
+}
+
+.new-script-btn {
+  width: 50px;
+  text-align: center;
+  background: $oc020;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 50px;
+  left: 10px;
+}
