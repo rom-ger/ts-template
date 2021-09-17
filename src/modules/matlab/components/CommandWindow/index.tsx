@@ -1,100 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import { ICodingStore } from '../../store/codingStore';
+import CommandHistory from '../CommandHistory';
+import CommandLine from '../CommandLine';
+import LiveScript from '../LiveScript';
 
 interface ICoding {
     codingStore?: ICodingStore;
 }
 
 const CommandWindow = inject('codingStore')(observer(({ codingStore }: ICoding) => {
-    const [codeRow, setCodeRow] = useState<string | null>(null);
-    const [currentRowsAmount, setCurrentRowsAmount] = useState<number>(1);
-    const [minRows] = useState<number>(1);
-    const [maxRows] = useState<number>(20);
-
-    useEffect(
-        () => {
-            codingStore?.getHistory();
-        },
-        [],
-    );
-
-    useEffect(
-        () => {
-            scrollToEndByClassName('.code-history-container');
-        },
-        [codingStore?.history],
-    );
-
-    const handleCode = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const textareaLineHeight = 24;
-        const previousRows = e.currentTarget.rows;
-        e.currentTarget.rows = minRows;
-        const currentRows = Math.floor((e.currentTarget.scrollHeight / textareaLineHeight));
-
-        if (currentRows === previousRows) {
-            e.currentTarget.rows = currentRows;
-        }
-
-        if (currentRows >= maxRows) {
-            e.currentTarget.rows = maxRows;
-            e.currentTarget.scrollTop = e.currentTarget.scrollHeight;
-        }
-
-        setCurrentRowsAmount(currentRows < maxRows ? currentRows : maxRows);
-        setCodeRow(e.currentTarget.value);
-    };
-
-    const passCodeOnKernel = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter' && e.shiftKey) {
-            codingStore?.executeCode(codeRow)
-            setCodeRow(null);
-            setCurrentRowsAmount(1);
-            setTimeout(() => scrollToEndByClassName('.code-history-container'), 100)
+    const [amount, setAmount] = useState<number>(0);
+    const test = () => {
+        if (amount === 1) {
+            setAmount(amount - 1);
+        } else {
+            setAmount(amount + 1);
         }
     };
-
-    const scrollToEndByClassName = (className: string) => {
-        const element = document.querySelector(className);
-
-        if (element instanceof HTMLElement) {
-            element.scrollTop = element.scrollHeight;
-        }
-    };
-
     return (
         <>
-            <div className="code-history-container">
-                {codingStore?.history && (
-                    codingStore?.history.map((inout, index) => (
-                        <div
-                            className="inout-row"
-                            key={index}
-                        >
-                            <div className="inout-row__in">
-                                <span>[ {index + 1} ] : </span>
-                                <span>{inout.In}</span>
-                            </div>
-                            {inout.Out && inout.Out !== 'None' && (
-                                <div className="inout-row__out">
-                                    <span>[ {index + 1} ] : </span>
-                                    <span>{inout.Out}</span>
-                                </div>
-                            )}
-                        </div>
-                    ))
-                )}
-            </div>
-            <div className="input-code-row">
-                <textarea
-                    className="input-code-row__code"
-                    rows={currentRowsAmount}
-                    placeholder="typecode"
-                    value={codeRow || ''}
-                    onKeyUp={passCodeOnKernel}
-                    onChange={handleCode}
-                />
-            </div>
+            <button
+                className="new-script-btn"
+                onClick={test}
+            >
+                New Script
+            </button>
+            {amount === 1 && (
+                <LiveScript />
+            )}
+            <CommandHistory />
+            <CommandLine />
         </>
     );
 }));

@@ -39,16 +39,24 @@ const CurrentPath = inject('directoryStore')(observer(({ directoryStore }: IFile
 
     return (
         <>
-            <div style={{ display: 'flex' }}>
+            <div className="path-row">
                 {splitDirs && Boolean(splitDirs.length) ? (
-                    <div>
-                        <span>Current path: </span>
-                        {splitDirs
-                            .filter(d => d.length !== 0)
-                            .map((d, index) =>
-                                     <span key={index} onClick={() => goToDir(index)}>/{d}</span>,
-                            )}
-                    </div>
+                    <>
+                        <span>Current path:</span>
+                        <div className="current-path">
+                            {splitDirs
+                                .filter(d => d.length !== 0)
+                                .map((d, index) =>
+                                         <div
+                                             className="current-path__item"
+                                             key={index}
+                                             onClick={() => goToDir(index)}
+                                         >
+                                             /{d}
+                                         </div>,
+                                )}
+                        </div>
+                    </>
                 ) : (
                     <span>Current path: /</span>
                 )}

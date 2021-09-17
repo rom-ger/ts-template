@@ -13,22 +13,13 @@
   }
 }
 
-.input-code-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  padding: 8px 8px;
-  margin-top: auto;
-
-  &__code {
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 3px;
-    line-height: 24px;
-    resize: none;
-    overflow: auto;
-    height: auto;
-    padding: 5px;
-    box-shadow: 0 4px 10px -8px black;
-  }
+.new-script-btn {
+  width: 50px;
+  text-align: center;
+  background: $oc020;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 50px;
+  left: 10px;
 }

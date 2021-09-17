@@ -1,0 +1,18 @@
+.path-row {
+  display: flex;
+}
+
+.current-path{
+  display: flex;
+
+  &__item{
+    cursor: pointer;
+    margin-left: 5px;
+    transition-duration: 0.2s;
+  }
+
+  &__item:hover{
+    font-weight: 600;
+    transform: scale(1.1);
+  }
+}
